@@ -120,13 +120,13 @@ def create_connectedk8s(cmd, client, resource_group_name, cluster_name, https_pr
         telemetry.set_user_fault()
         telemetry.set_exception(exception="Couldn't find any node on the kubernetes cluster with the architecture type 'amd64' and OS 'linux'", fault_type=consts.Linux_Amd64_Node_Not_Exists,
                                 summary="Couldn't find any node on the kubernetes cluster with the architecture type 'amd64' and OS 'linux'")
-        logger.warning("Please ensure that this Kubernetes cluster have any nodes with OS 'linux' and architecture 'amd64', for scheduling the Arc-Agents onto and connecting to Azure. Learn more at {}".format("https://aka.ms/ArcK8sSupportedOSArchitecture"))
+        logger.warning("Please ensure that this Kubernetes cluster has a node with OS 'linux' and architecture 'amd64', for scheduling the Arc-Agents onto and connecting to Azure. Learn more at {}".format("https://aka.ms/ArcK8sSupportedOSArchitecture"))
 
     crb_permission = utils.can_create_clusterrolebindings(configuration)
     if not crb_permission:
-        telemetry.set_exception(exception="Your credentials doesn't have permission to create clusterrolebindings on this kubernetes cluster.", fault_type=consts.Cannot_Create_ClusterRoleBindings_Fault_Type,
-                                summary="Your credentials doesn't have permission to create clusterrolebindings on this kubernetes cluster.")
-        raise ValidationError("Your credentials doesn't have permission to create clusterrolebindings on this kubernetes cluster. Please check your permissions.")
+        telemetry.set_exception(exception="Your credentials don't have permission to create clusterrolebindings on this kubernetes cluster.", fault_type=consts.Cannot_Create_ClusterRoleBindings_Fault_Type,
+                                summary="Your credentials don't have permission to create clusterrolebindings on this kubernetes cluster.")
+        raise ValidationError("Your credentials don't have permission to create clusterrolebindings on this kubernetes cluster. Please check your permissions.")
 
     # Get kubernetes cluster info
     kubernetes_version = get_server_version(configuration)
